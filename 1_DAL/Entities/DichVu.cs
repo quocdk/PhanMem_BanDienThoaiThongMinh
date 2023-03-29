@@ -10,6 +10,8 @@ namespace _1_DAL.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string LoaiDichVu { get; set; }
+        public decimal Price { get; set; }
         public virtual List<HoaDonCT> HoaDonCTs { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace _1_DAL.Configurations
             builder.ToTable("DichVu");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnType("nvarchar(200)").IsRequired();
+            builder.Property(x => x.LoaiDichVu).HasColumnType("nvarchar(200)").IsRequired();
         }
     }
 }

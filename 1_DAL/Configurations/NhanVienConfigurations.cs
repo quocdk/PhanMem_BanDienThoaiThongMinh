@@ -16,6 +16,8 @@ namespace _1_DAL.Configurations
             builder.ToTable("NhanVien");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnType("nvarchar(200)");
+            builder.Property(x => x.PhoneNumber).HasColumnType("nvarchar(200)");
+
             builder.Property(x => x.BirthDay).HasColumnType("DateTime");
             //builder.Property(x => x.Sex).HasColumnType("");
             builder.Property(x => x.LinkImage).HasColumnType("nvarchar(200)");

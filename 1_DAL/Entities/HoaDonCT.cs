@@ -9,12 +9,11 @@ namespace _1_DAL.Entities
     public class HoaDonCT
     {
         public Guid Id { get; set; }
-        public Guid IdDV { get; set; }
-        public Guid IdHD { get; set; }
-        public Guid IdSP { get; set; }
-        public Guid IdKM { get; set; }
+        public Guid DichVuId { get; set; }
+        public Guid HoaDonId { get; set; }
+        public Guid SanPhamId { get; set; }
+        public Guid KhuyenMaiId { get; set; }
         public int Quantity { get; set; }
-        public decimal Price { get; set; }
         public decimal IntoMoney { get; set; }
         public virtual DichVu DichVu { get; set; }
         public virtual SanPham SanPham { get; set; }

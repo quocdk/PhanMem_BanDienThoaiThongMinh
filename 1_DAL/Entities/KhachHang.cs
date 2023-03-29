@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace _1_DAL.Entities
 {
-    public class NhanVien
+    public class KhachHang
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime BirthDay { get; set; }
         public bool Sex { get; set; }
-        public string LinkImage { get; set; }
-        public bool Status { get; set; }
-        public string Role { get; set; }
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
+        public string Address { get; set; }
+        public int Point { get; set; }
         public virtual List<HoaDon> HoaDons { get; set; }
     }
 }

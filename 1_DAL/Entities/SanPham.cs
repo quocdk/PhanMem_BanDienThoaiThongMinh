@@ -9,15 +9,16 @@ namespace _1_DAL.Entities
     public class SanPham
     {
         public Guid Id { get; set; }
-        public Guid IdHangDT { get; set; }
-        public Guid IdLoaiDT { get; set; }
-        public Guid IdKhuyenMai { get; set; }
-        public Guid IdNhaCungCapCT { get; set; }
+        public Guid HangDTId { get; set; }
+        public Guid LoaiDTId { get; set; }
+        public Guid KhuyenMaiId { get; set; }
+        public Guid NhaCungCapCTId { get; set; }
         public string Name { get; set; }
         public string LinkAnh { get; set; }
         public int Status { get; set; }
+        public decimal ImportPrice { get; set; }
         public decimal Price { get; set; }
-        public virtual KhuyenMai KhuyenMai { get; set; }
+        public string Descriptions { get; set; }
         public virtual LoaiDT LoaiDT { get; set; }
         public virtual HangDT HangDT { get; set; }
         public virtual List<NhaCungCapCT> NhaCungCapCTs { get; set; }

@@ -18,7 +18,7 @@ namespace _1_DAL.Configurations
             builder.Property(x => x.Name).HasColumnType("nvarchar(200)");
             builder.Property(x => x.CreateDate).HasColumnType("DateTime");
             builder.Property(x => x.EndDate).HasColumnType("DateTime");
-            builder.Property(x => x.Descriptions).HasColumnType("nvarchar(200)");
+            builder.Property(x => x.ChiSo).HasColumnType("nvarchar(200)");
         }
     }
 }

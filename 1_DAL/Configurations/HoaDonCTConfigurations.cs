@@ -16,11 +16,11 @@ namespace _1_DAL.Configurations
             builder.ToTable("HoaDonCT");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Quantity).IsRequired();
-            builder.Property(x => x.Price).IsRequired();
-            builder.HasOne(x => x.HoaDon).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.IdHD);
-            builder.HasOne(x => x.DichVu).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.IdDV);
-            builder.HasOne(x => x.SanPham).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.IdSP);
-            builder.HasOne(x => x.KhuyenMai).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.IdKM);
+            builder.Property(x => x.IntoMoney).IsRequired();
+            builder.HasOne(x => x.HoaDon).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.HoaDonId);
+            builder.HasOne(x => x.DichVu).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.DichVuId);
+            builder.HasOne(x => x.SanPham).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.SanPhamId);
+            builder.HasOne(x => x.KhuyenMai).WithMany(x => x.HoaDonCTs).HasForeignKey(x => x.KhuyenMaiId);
         }
     }
 }

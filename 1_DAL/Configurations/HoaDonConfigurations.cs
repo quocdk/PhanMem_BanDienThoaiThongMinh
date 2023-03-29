@@ -14,9 +14,11 @@ namespace _1_DAL.Configurations
         public void Configure(EntityTypeBuilder<HoaDon> builder)
         {
             builder.ToTable("HoaDon");
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.CreateDate).HasColumnType("DateTime").IsRequired();
             builder.Property(x => x.Note).HasColumnType("nvarchar(200)");
-            builder.HasOne(x => x.NhanVien).WithMany(x => x.HoaDons).HasForeignKey(x => x.IdNV);
+            builder.HasOne(x => x.NhanVien).WithMany(x => x.HoaDons).HasForeignKey(x => x.NhanVienId);
+            builder.HasOne(x => x.KhachHang).WithMany(x => x.HoaDons).HasForeignKey(x => x.KhachHangId);
         }
     }
 }

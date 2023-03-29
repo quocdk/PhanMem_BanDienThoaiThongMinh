@@ -12,7 +12,7 @@ namespace _1_DAL.Entities
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Descriptions { get; set; }
+        public int ChiSo { get; set; }
         public virtual List<HoaDonCT> HoaDonCTs { get; set; }
     }
 }

@@ -16,8 +16,8 @@ namespace _1_DAL.Configurations
             builder.ToTable("NhaCungCapCT");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnType("nvarchar(200)").IsRequired();
-            builder.HasOne(x => x.SanPham).WithMany(x => x.NhaCungCapCTs).HasForeignKey(x => x.IdSP);
-            builder.HasOne(x => x.NhaCungCap).WithMany(x => x.NhaCungCapCTs).HasForeignKey(x => x.IdNhaCungCap);
+            builder.HasOne(x => x.SanPham).WithMany(x => x.NhaCungCapCTs).HasForeignKey(x => x.SanPhamId);
+            builder.HasOne(x => x.NhaCungCap).WithMany(x => x.NhaCungCapCTs).HasForeignKey(x => x.NhaCungCapId);
         }
     }
 }

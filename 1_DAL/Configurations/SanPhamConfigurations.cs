@@ -19,8 +19,8 @@ namespace _1_DAL.Configurations
             builder.Property(x => x.Name).HasColumnType("nvarchar(200)");
             builder.Property(x => x.LinkAnh).HasColumnType("nvarchar(200)");
             //builder.HasOne(x => x.KhuyenMai).WithMany(x => x.SanPhams).HasForeignKey(x => x.IdKhuyenMai);
-            builder.HasOne(x => x.HangDT).WithMany(x => x.SanPhams).HasForeignKey(x => x.IdHangDT);
-            builder.HasOne(x => x.LoaiDT).WithMany(x => x.SanPhams).HasForeignKey(x => x.IdLoaiDT);
+            builder.HasOne(x => x.HangDT).WithMany(x => x.SanPhams).HasForeignKey(x => x.HangDTId);
+            builder.HasOne(x => x.LoaiDT).WithMany(x => x.SanPhams).HasForeignKey(x => x.LoaiDTId);
         }
     }
 }

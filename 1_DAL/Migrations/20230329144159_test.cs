@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace _1_DAL.Migrations
 {
-    public partial class duan01 : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,9 @@ namespace _1_DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LoaiDichVu = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,6 +36,22 @@ namespace _1_DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "KhachHang",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sex = table.Column<bool>(type: "bit", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Point = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KhachHang", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "khuyenMais",
                 columns: table => new
                 {
@@ -41,7 +59,7 @@ namespace _1_DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descriptions = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ChiSo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,7 +96,7 @@ namespace _1_DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Sex = table.Column<bool>(type: "bit", nullable: false),
                     LinkImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -97,17 +115,16 @@ namespace _1_DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdHangDT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdLoaiDT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdKhuyenMai = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdNhaCungCapCT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    HangDTId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LoaiDTId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    KhuyenMaiId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NhaCungCapCTId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LinkAnh = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    ImportPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    KhuyenMaiId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LoaiDTId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    HangDTId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Descriptions = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,12 +133,6 @@ namespace _1_DAL.Migrations
                         name: "FK_sanPhams_hangDTs_HangDTId",
                         column: x => x.HangDTId,
                         principalTable: "hangDTs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_sanPhams_khuyenMais_KhuyenMaiId",
-                        column: x => x.KhuyenMaiId,
-                        principalTable: "khuyenMais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -137,16 +148,21 @@ namespace _1_DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdHoaDonCT = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdNV = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    KhachHangId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NhanVienId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    NhanVienId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_hoaDons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_hoaDons_KhachHang_KhachHangId",
+                        column: x => x.KhachHangId,
+                        principalTable: "KhachHang",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_hoaDons_nhanViens_NhanVienId",
                         column: x => x.NhanVienId,
@@ -160,11 +176,9 @@ namespace _1_DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdSP = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdNhaCungCap = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SanPhamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    NhaCungCapId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    NhaCungCapId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,17 +202,12 @@ namespace _1_DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdDV = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdHD = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdSP = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdKM = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IntoMoney = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DichVuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SanPhamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     HoaDonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KhuyenMaiId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    SanPhamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    KhuyenMaiId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    IntoMoney = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,7 +235,7 @@ namespace _1_DAL.Migrations
                         column: x => x.SanPhamId,
                         principalTable: "sanPhams",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -250,6 +259,11 @@ namespace _1_DAL.Migrations
                 column: "SanPhamId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_hoaDons_KhachHangId",
+                table: "hoaDons",
+                column: "KhachHangId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_hoaDons_NhanVienId",
                 table: "hoaDons",
                 column: "NhanVienId");
@@ -268,11 +282,6 @@ namespace _1_DAL.Migrations
                 name: "IX_sanPhams_HangDTId",
                 table: "sanPhams",
                 column: "HangDTId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_sanPhams_KhuyenMaiId",
-                table: "sanPhams",
-                column: "KhuyenMaiId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_sanPhams_LoaiDTId",
@@ -295,19 +304,22 @@ namespace _1_DAL.Migrations
                 name: "hoaDons");
 
             migrationBuilder.DropTable(
+                name: "khuyenMais");
+
+            migrationBuilder.DropTable(
                 name: "nhaCungCaps");
 
             migrationBuilder.DropTable(
                 name: "sanPhams");
 
             migrationBuilder.DropTable(
+                name: "KhachHang");
+
+            migrationBuilder.DropTable(
                 name: "nhanViens");
 
             migrationBuilder.DropTable(
                 name: "hangDTs");
-
-            migrationBuilder.DropTable(
-                name: "khuyenMais");
 
             migrationBuilder.DropTable(
                 name: "loaiDTs");
