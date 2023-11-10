@@ -1,3 +1,5 @@
+using FrmDuAn1;
+
 namespace _3_PL
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace _3_PL
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmNhanVien());
+            Application.Run(new frmDangNhap());
         }
     }
 }

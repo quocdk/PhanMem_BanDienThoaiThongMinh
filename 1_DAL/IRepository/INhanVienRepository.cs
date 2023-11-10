@@ -9,9 +9,9 @@ namespace _1_DAL.IRepository
 {
     public interface INhanVienRepository
     {
-        bool Add(NhanVien nhanVien);
-        bool Update(NhanVien nhanVien);
-        bool Delete(NhanVien nhanVien);
-        List<NhanVien> GetAll();
+        bool Add(Employee nhanVien);
+        bool Update(Employee nhanVien);
+        bool Delete(Employee nhanVien);
+        List<Employee> GetAll();
     }
 }

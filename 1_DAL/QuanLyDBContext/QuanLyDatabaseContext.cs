@@ -21,20 +21,21 @@ namespace _1_DAL.QuanLyDBContext
         {
 
         }
-        public  DbSet<DichVu> dichVus { get; set; }
-        public  DbSet<HangDT> hangDTs { get; set; }
-        public  DbSet<HoaDon> hoaDons { get; set; }
-        public  DbSet<HoaDonCT> hoaDonCTs { get; set; }
-        public  DbSet<KhuyenMai> khuyenMais { get; set; }
-        public  DbSet<LoaiDT> loaiDTs { get; set; }
-        public  DbSet<NhaCungCap> nhaCungCaps { get; set; }
-        public  DbSet<NhaCungCapCT> nhaCungCapCTs { get; set; }
-        public  DbSet<NhanVien> nhanViens { get; set; }
-        public  DbSet<SanPham> sanPhams   { get; set; }
+        public  DbSet<Service> Services { get; set; }
+        public  DbSet<PhoneCompany> PhoneCompanies { get; set; }
+        public  DbSet<Bill> bills { get; set; }
+        public  DbSet<BillDetail> BillDetails { get; set; }
+        public  DbSet<Promotion> Promotions { get; set; }
+        public  DbSet<PhoneType> PhoneTypes { get; set; }
+        public  DbSet<Supplier> Suppliers { get; set; }
+        public  DbSet<SupplierDetail> SupplierDetails { get; set; }
+        public  DbSet<Employee> Employees { get; set; }
+        public  DbSet<Product> Products   { get; set; }
+        public DbSet<Custommer> custommers { get; set; }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=ANTHONYPC\SQLEXPRESS;Initial Catalog=du_an_01;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=ANTHONYPC\SQLEXPRESS;Initial Catalog=du_an_1_;Integrated Security=True");
         }
     }
 }

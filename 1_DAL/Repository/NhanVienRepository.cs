@@ -14,28 +14,28 @@ namespace _1_DAL.Repository
     public class NhanVienRepository : INhanVienRepository
     {
         QuanLyDatabaseContext _dbContext = new QuanLyDatabaseContext();
-        public bool Add(NhanVien nhanVien)
+        public bool Add(Employee employee)
         {
-            _dbContext.Add(nhanVien);
+            _dbContext.Add(employee);
             _dbContext.SaveChanges();
             return true;
         }
 
-        public bool Delete(NhanVien nhanVien)
+        public bool Delete(Employee employee)
         {
-            _dbContext.Remove(nhanVien);
+            _dbContext.Remove(employee);
             _dbContext.SaveChanges();
             return true;
         }
 
-        public List<NhanVien> GetAll()
+        public List<Employee> GetAll()
         {
-            return _dbContext.nhanViens.ToList();
+            return _dbContext.Employees.ToList();
         }
 
-        public bool Update(NhanVien nhanVien)
+        public bool Update(Employee employee)
         {
-            _dbContext.Update(nhanVien);
+            _dbContext.Update(employee);
             _dbContext.SaveChanges();
             return true;
         }

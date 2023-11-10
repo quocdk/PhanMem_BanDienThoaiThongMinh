@@ -22,44 +22,7 @@ namespace _1_DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("_1_DAL.Entities.DichVu", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LoaiDichVu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("dichVus");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.HangDT", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("hangDTs");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.HoaDon", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Bill", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,10 +31,10 @@ namespace _1_DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("KhachHangId")
+                    b.Property<Guid>("CustommerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("NhanVienId")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Note")
@@ -83,51 +46,51 @@ namespace _1_DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KhachHangId");
+                    b.HasIndex("CustommerId");
 
-                    b.HasIndex("NhanVienId");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("hoaDons");
+                    b.ToTable("bills");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.HoaDonCT", b =>
+            modelBuilder.Entity("_1_DAL.Entities.BillDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DichVuId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("HoaDonId")
+                    b.Property<Guid>("BillId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("IntoMoney")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("KhuyenMaiId")
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PromotionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("SanPhamId")
+                    b.Property<Guid>("ServiceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DichVuId");
+                    b.HasIndex("BillId");
 
-                    b.HasIndex("HoaDonId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("KhuyenMaiId");
+                    b.HasIndex("PromotionId");
 
-                    b.HasIndex("SanPhamId");
+                    b.HasIndex("ServiceId");
 
-                    b.ToTable("hoaDonCTs");
+                    b.ToTable("BillDetails");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.KhachHang", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Custommer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,89 +116,10 @@ namespace _1_DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("KhachHang");
+                    b.ToTable("custommers");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.KhuyenMai", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ChiSo")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("khuyenMais");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.LoaiDT", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("loaiDTs");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.NhaCungCap", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("nhaCungCaps");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.NhaCungCapCT", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("NhaCungCapId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SanPhamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NhaCungCapId");
-
-                    b.HasIndex("SanPhamId");
-
-                    b.ToTable("nhaCungCapCTs");
-                });
-
-            modelBuilder.Entity("_1_DAL.Entities.NhanVien", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -243,6 +127,10 @@ namespace _1_DAL.Migrations
 
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LinkImage")
                         .IsRequired()
@@ -276,10 +164,40 @@ namespace _1_DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("nhanViens");
+                    b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.SanPham", b =>
+            modelBuilder.Entity("_1_DAL.Entities.PhoneCompany", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhoneCompanies");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.PhoneType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhoneTypes");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -289,181 +207,298 @@ namespace _1_DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("HangDTId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("ImportPrice")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("KhuyenMaiId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LinkAnh")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LoaiDTId")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PhoneCompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PhoneTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SupplierDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("WarrantyPeriod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhoneCompanyId");
+
+                    b.HasIndex("PhoneTypeId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.Promotion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Promotions");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.Service", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("NhaCungCapCTId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("TypeService")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HangDTId");
-
-                    b.HasIndex("LoaiDTId");
-
-                    b.ToTable("sanPhams");
+                    b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.HoaDon", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Supplier", b =>
                 {
-                    b.HasOne("_1_DAL.Entities.KhachHang", "KhachHang")
-                        .WithMany("HoaDons")
-                        .HasForeignKey("KhachHangId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebSite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.SupplierDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SupplierId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("SupplierDetails");
+                });
+
+            modelBuilder.Entity("_1_DAL.Entities.Bill", b =>
+                {
+                    b.HasOne("_1_DAL.Entities.Custommer", "Custommer")
+                        .WithMany("Bills")
+                        .HasForeignKey("CustommerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.NhanVien", "NhanVien")
-                        .WithMany("HoaDons")
-                        .HasForeignKey("NhanVienId")
+                    b.HasOne("_1_DAL.Entities.Employee", "Employee")
+                        .WithMany("Bills")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("KhachHang");
+                    b.Navigation("Custommer");
 
-                    b.Navigation("NhanVien");
+                    b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.HoaDonCT", b =>
+            modelBuilder.Entity("_1_DAL.Entities.BillDetail", b =>
                 {
-                    b.HasOne("_1_DAL.Entities.DichVu", "DichVu")
-                        .WithMany("HoaDonCTs")
-                        .HasForeignKey("DichVuId")
+                    b.HasOne("_1_DAL.Entities.Bill", "Bill")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.HoaDon", "HoaDon")
-                        .WithMany("HoaDonCTs")
-                        .HasForeignKey("HoaDonId")
+                    b.HasOne("_1_DAL.Entities.Product", "Product")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.KhuyenMai", "KhuyenMai")
-                        .WithMany("HoaDonCTs")
-                        .HasForeignKey("KhuyenMaiId")
+                    b.HasOne("_1_DAL.Entities.Promotion", "Promotion")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("PromotionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.SanPham", "SanPham")
-                        .WithMany("HoaDonCTs")
-                        .HasForeignKey("SanPhamId")
+                    b.HasOne("_1_DAL.Entities.Service", "Service")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DichVu");
+                    b.Navigation("Bill");
 
-                    b.Navigation("HoaDon");
+                    b.Navigation("Product");
 
-                    b.Navigation("KhuyenMai");
+                    b.Navigation("Promotion");
 
-                    b.Navigation("SanPham");
+                    b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.NhaCungCapCT", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Product", b =>
                 {
-                    b.HasOne("_1_DAL.Entities.NhaCungCap", "NhaCungCap")
-                        .WithMany("NhaCungCapCTs")
-                        .HasForeignKey("NhaCungCapId")
+                    b.HasOne("_1_DAL.Entities.PhoneCompany", "PhoneCompany")
+                        .WithMany("Products")
+                        .HasForeignKey("PhoneCompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.SanPham", "SanPham")
-                        .WithMany("NhaCungCapCTs")
-                        .HasForeignKey("SanPhamId")
+                    b.HasOne("_1_DAL.Entities.PhoneType", "PhoneType")
+                        .WithMany("Products")
+                        .HasForeignKey("PhoneTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("NhaCungCap");
+                    b.Navigation("PhoneCompany");
 
-                    b.Navigation("SanPham");
+                    b.Navigation("PhoneType");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.SanPham", b =>
+            modelBuilder.Entity("_1_DAL.Entities.SupplierDetail", b =>
                 {
-                    b.HasOne("_1_DAL.Entities.HangDT", "HangDT")
-                        .WithMany("SanPhams")
-                        .HasForeignKey("HangDTId")
+                    b.HasOne("_1_DAL.Entities.Product", "Product")
+                        .WithMany("SupplierDetails")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_1_DAL.Entities.LoaiDT", "LoaiDT")
-                        .WithMany("SanPhams")
-                        .HasForeignKey("LoaiDTId")
+                    b.HasOne("_1_DAL.Entities.Supplier", "Supplier")
+                        .WithMany("SupplierDetails")
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("HangDT");
+                    b.Navigation("Product");
 
-                    b.Navigation("LoaiDT");
+                    b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.DichVu", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Bill", b =>
                 {
-                    b.Navigation("HoaDonCTs");
+                    b.Navigation("BillDetails");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.HangDT", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Custommer", b =>
                 {
-                    b.Navigation("SanPhams");
+                    b.Navigation("Bills");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.HoaDon", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Employee", b =>
                 {
-                    b.Navigation("HoaDonCTs");
+                    b.Navigation("Bills");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.KhachHang", b =>
+            modelBuilder.Entity("_1_DAL.Entities.PhoneCompany", b =>
                 {
-                    b.Navigation("HoaDons");
+                    b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.KhuyenMai", b =>
+            modelBuilder.Entity("_1_DAL.Entities.PhoneType", b =>
                 {
-                    b.Navigation("HoaDonCTs");
+                    b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.LoaiDT", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Product", b =>
                 {
-                    b.Navigation("SanPhams");
+                    b.Navigation("BillDetails");
+
+                    b.Navigation("SupplierDetails");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.NhaCungCap", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Promotion", b =>
                 {
-                    b.Navigation("NhaCungCapCTs");
+                    b.Navigation("BillDetails");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.NhanVien", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Service", b =>
                 {
-                    b.Navigation("HoaDons");
+                    b.Navigation("BillDetails");
                 });
 
-            modelBuilder.Entity("_1_DAL.Entities.SanPham", b =>
+            modelBuilder.Entity("_1_DAL.Entities.Supplier", b =>
                 {
-                    b.Navigation("HoaDonCTs");
-
-                    b.Navigation("NhaCungCapCTs");
+                    b.Navigation("SupplierDetails");
                 });
 #pragma warning restore 612, 618
         }
